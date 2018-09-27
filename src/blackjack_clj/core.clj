@@ -31,10 +31,10 @@
   "Walks the player through a hand of blackjack"
   [balance]
   (loop []
-    (print "Bet: ")
+    (println "Bet: ")
     ;; Note read-string is an ARBITRARY CODE EXECUTION
     ;; venerability, but this is a simple blackjack game so meh
-    (let [parsed-bet (parse-string (read-line))]
+    (let [parsed-bet (read-string (read-line))]
       (if (number? parsed-bet)
         parsed-bet
         (do
@@ -47,9 +47,11 @@
   (loop [account-balance 1000]
     (cond (and (<= account-balance 0)
                (y-n "You appear to have run out of money."
-                    "\nDo you wish to reset your balance to 1000 units?")
-               ) (recur 1000)
+                    "\nDo you wish to reset your balance to 1000 units?"))
+          (recur 1000)
+
           (and (> account-balance 0)
-               (y-n "Your balance is " account-balance " units. Play a hand?")
-               ) (recur (play-hand account-balance))
+               (y-n "Your balance is " account-balance " units. Play a hand?"))
+          (recur (play-hand account-balance))
+
           :else (println "Game over."))))
