@@ -1,14 +1,26 @@
 # blackjack-clj
 
-A Clojure library designed to ... well, that part is up to you.
+A clojure cli blackjack game
 
-## Usage
+## Useage
 
-FIXME
+#### Native:
+Have [lein](https://leiningen.org/) installed.
 
-## License
+    lein run
 
-Copyright © 2018 FIXME
+#### Docker:
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+    docker-compose build
+    docker-compose run blackjack lein run
+
+## Testing:
+Have [lein](https://leiningen.org/) installed.
+
+    lein run
+
+## Caveats:
+ - This game doesn't handle splits
+ - This game dosen't handle the case where the dealer has blackjack properly:
+   - If the player doesn't also have blackjack, they are allowed to play a hand and attempt to match the dealer's 21
+   - If the player does have blackjack, the player wins

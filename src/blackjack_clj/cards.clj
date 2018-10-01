@@ -55,16 +55,21 @@
         remain-points
         (recur (dec remain-aces) (- remain-points 10))))))
 
+(defn display-hand
+  "Returns a human-readable version of a hand of cards"
+  [hand]
+  (str (apply str (->> hand
+                       (map display-card)
+                       (interpose ", ")))
+       " ("
+       (hand-points hand)
+       " points)"))
+
 (defn hand-soft?
   "Returns whether or not the hand contains an ace being
   used as 11 points"
   [hand]
   (let [points-list (map card-points hand)]
-    (println (->> points-list
-                  (map (fn [points] (if (= points 11) 1 points)))
-                  (reduce +)
-                  )
-             (hand-points hand))
     (and
      (in? points-list 11)
      (not= (->> points-list
@@ -76,6 +81,7 @@
   "An unshuffled deck of cards"
   (combo/cartesian-product (range 13) (list hearts spades clubs diamonds)))
 
-(def shuffled-deck
+(defn shuffled-deck
   "returns a new shuffled deck of cards"
+  []
   (shuffle unshuffled-deck))
