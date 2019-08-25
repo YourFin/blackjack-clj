@@ -17,7 +17,7 @@ Have [lein](https://leiningen.org/) installed.
 ## Testing:
 Have [lein](https://leiningen.org/) installed.
 
-    lein run
+    lein test
 
 ## Caveats:
  - This game doesn't handle splits
